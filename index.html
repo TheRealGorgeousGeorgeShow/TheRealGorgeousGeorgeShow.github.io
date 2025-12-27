@@ -21,7 +21,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0;          /* ✅ NOT negative */
+      z-index: 0; /* keep non-negative so it doesn't disappear */
     }
 
     /* Optional dark overlay for readability */
@@ -29,18 +29,18 @@
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.15);
-      z-index: 0;          /* same layer as bg is fine */
+      z-index: 0;
       pointer-events: none;
     }
 
-    /* Everything you want to scroll goes in here */
+    /* Everything that scrolls */
     .page {
       position: relative;
-      z-index: 1;          /* ✅ above the stars */
+      z-index: 1; /* above stars */
       padding: 20px;
     }
 
-    /* Title (scrolls now) */
+    /* Centered gold title with pulse */
     .title {
       text-align: center;
       margin: 0 0 22px;
@@ -56,12 +56,25 @@
     }
 
     @keyframes glowPulse {
-      0%   { text-shadow: 0 3px 8px rgba(0,0,0,0.75), 0 0 10px rgba(212,175,55,0.35); }
-      50%  { text-shadow: 0 4px 12px rgba(0,0,0,0.85), 0 0 22px rgba(212,175,55,0.7), 0 0 40px rgba(212,175,55,0.35); }
-      100% { text-shadow: 0 3px 8px rgba(0,0,0,0.75), 0 0 10px rgba(212,175,55,0.35); }
+      0% {
+        text-shadow:
+          0 3px 8px rgba(0,0,0,0.75),
+          0 0 10px rgba(212,175,55,0.35);
+      }
+      50% {
+        text-shadow:
+          0 4px 12px rgba(0,0,0,0.85),
+          0 0 22px rgba(212,175,55,0.7),
+          0 0 40px rgba(212,175,55,0.35);
+      }
+      100% {
+        text-shadow:
+          0 3px 8px rgba(0,0,0,0.75),
+          0 0 10px rgba(212,175,55,0.35);
+      }
     }
 
-    /* Two-column layout (scrolls as a unit) */
+    /* Two-column layout */
     .layout {
       display: grid;
       grid-template-columns: 360px 1fr;
@@ -69,7 +82,7 @@
       align-items: start;
     }
 
-    /* Left column */
+    /* Left column (logo + buttons) */
     .nav-wrap {
       display: flex;
       flex-direction: column;
@@ -123,9 +136,12 @@
       transform: translateX(4px);
     }
 
-    /* Right column video (scrolls) */
+    /* Right column video (25% smaller) */
     .side-video video {
-      width: 100%;
+      width: 75%;          /* ✅ 25% smaller */
+      margin: 0 auto;      /* center in the right column */
+      display: block;
+
       aspect-ratio: 16 / 9;
       height: auto;
       object-fit: cover;
@@ -135,25 +151,29 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.6);
     }
 
-    /* Mobile: stack */
+    /* Mobile: stack layout */
     @media (max-width: 900px) {
       .title { font-size: 56px; }
       .layout { grid-template-columns: 1fr; }
       .nav a { width: 100%; }
+      .side-video video { width: 100%; } /* full width on mobile */
     }
   </style>
 </head>
 
 <body>
+  <!-- Stars background -->
   <video class="bg" autoplay muted loop playsinline>
     <source src="stars.mp4" type="video/mp4">
   </video>
+
   <div class="overlay"></div>
 
   <div class="page">
     <h1 class="title">The Gorgeous George Show</h1>
 
     <div class="layout">
+      <!-- Left: logo + navigation -->
       <div class="nav-wrap">
         <div class="nav-logo">
           <img src="logo.png" alt="The Gorgeous George Show Logo">
@@ -171,6 +191,7 @@
         </nav>
       </div>
 
+      <!-- Right: looping video -->
       <div class="side-video">
         <video autoplay muted loop playsinline>
           <source src="Cry%20Baby%20George.mp4" type="video/mp4">
