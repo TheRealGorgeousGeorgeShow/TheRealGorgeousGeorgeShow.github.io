@@ -13,7 +13,7 @@
       background: black;
     }
 
-    /* Background video (UNCHANGED from the working version) */
+    /* Background video (same as the version that worked) */
     video {
       position: fixed;
       top: 0;
@@ -24,34 +24,33 @@
       z-index: 0;
     }
 
-    /* Fixed header text */
+    /* Centered header text */
     .title {
       position: fixed;
-      top: 16px;
-      right: 16px;
-      width: 50vw;               /* center */
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90vw;
       text-align: center;
 
       font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, "Times New Roman", serif;
-      color: #d4af37;            /* gold */
+      color: #d4af37; /* gold */
 
-      /* smaller + safer so it doesn't cut off */
-      font-size: clamp(22px, 3.2vw, 150px);
+      font-size: clamp(26px, 4vw, 56px);
       line-height: 1.05;
       font-weight: 600;
+      letter-spacing: 0.5px;
 
-      z-index: 1;                /* above the video */
+      z-index: 1;
       margin: 0;
       padding: 0;
-
-      /* allow wrapping instead of disappearing off-screen */
       white-space: normal;
     }
   </style>
 </head>
 
 <body>
-  <!-- stars.mp4 IS HERE -->
+  <!-- stars.mp4 (unchanged and required) -->
   <video autoplay muted loop playsinline>
     <source src="stars.mp4" type="video/mp4">
   </video>
