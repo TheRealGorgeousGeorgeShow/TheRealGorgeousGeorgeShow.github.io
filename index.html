@@ -66,27 +66,47 @@
       }
     }
 
-    /* Left-side navigation buttons */
-    .nav {
+    /* LEFT COLUMN (logo + buttons) */
+    .nav-wrap {
       position: fixed;
       top: 160px;
       left: 20px;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      align-items: center;
+      gap: 20px;
       z-index: 2;
+    }
+
+    /* Logo above buttons */
+    .nav-logo {
+      width: 330px;              /* match button width */
+      max-width: 40vw;
+    }
+
+    .nav-logo img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Navigation buttons */
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     .nav a {
       display: block;
-      min-width: 330px;          /* 50% bigger */
-      padding: 18px 24px;        /* 50% bigger */
+      min-width: 330px;
+      padding: 18px 24px;
 
       text-decoration: none;
       text-align: center;
 
       font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
-      font-size: 27px;           /* 50% bigger */
+      font-size: 27px;
       letter-spacing: 0.6px;
 
       color: #d4af37;
@@ -121,7 +141,7 @@
       height: 100%;
       object-fit: cover;
 
-      border: 2px solid #d4af37; /* thin gold border */
+      border: 2px solid #d4af37;
       border-radius: 10px;
 
       box-shadow: 0 12px 30px rgba(0,0,0,0.6);
@@ -139,17 +159,27 @@
   <!-- Title -->
   <h1 class="title">The Gorgeous George Show</h1>
 
-  <!-- Left navigation -->
-  <nav class="nav">
-    <a href="gallery.html">Photo Gallery</a>
-    <a href="kevin.html">Kevin's Bio</a>
-    <a href="glenry.html">Glenry's Bio</a>
-    <a href="losers.html">Other Losers</a>
-    <a href="content.html">GG Content</a>
-    <a href="1307.html">1307</a>
-    <a href="book.html">The Book</a>
-    <a href="youtube.html">Goon YouTube Links</a>
-  </nav>
+  <!-- Left column: logo + navigation -->
+  <div class="nav-wrap">
+
+    <!-- Logo -->
+    <div class="nav-logo">
+      <img src="logo.png" alt="The Gorgeous George Show Logo">
+    </div>
+
+    <!-- Buttons -->
+    <nav class="nav">
+      <a href="gallery.html">Photo Gallery</a>
+      <a href="kevin.html">Kevin's Bio</a>
+      <a href="glenry.html">Glenry's Bio</a>
+      <a href="losers.html">Other Losers</a>
+      <a href="content.html">GG Content</a>
+      <a href="1307.html">1307</a>
+      <a href="book.html">The Book</a>
+      <a href="youtube.html">Goon YouTube Links</a>
+    </nav>
+
+  </div>
 
   <!-- Right-side looping video -->
   <div class="side-video">
