@@ -13,18 +13,17 @@
       background: black;
     }
 
-    /* Background video (same as the version that worked) */
-    video {
+    /* Background stars video */
+    video.bg {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       z-index: 0;
     }
 
-    /* Centered header text */
+    /* Centered title */
     .title {
       position: fixed;
       top: 20px;
@@ -34,27 +33,55 @@
       text-align: center;
 
       font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, "Times New Roman", serif;
-      color: #d4af37; /* gold */
-
-      font-size: clamp(26px, 4vw, 100px);
+      color: #d4af37;
+      font-size: 100px;           /* your chosen size */
       line-height: 1.05;
       font-weight: 600;
       letter-spacing: 0.5px;
 
-      z-index: 1;
+      z-index: 2;
       margin: 0;
-      padding: 0;
-      white-space: normal;
+      pointer-events: none;
+    }
+
+    /* Right-side video area */
+    .side-video {
+      position: fixed;
+      top: 160px;                 /* space below the title */
+      right: 0;
+      width: 50vw;                /* right half of screen */
+      height: calc(100vh - 180px);
+      padding: 20px;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+
+    .side-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
     }
   </style>
 </head>
 
 <body>
-  <!-- stars.mp4 (unchanged and required) -->
-  <video autoplay muted loop playsinline>
+
+  <!-- Fullscreen looping background -->
+  <video class="bg" autoplay muted loop playsinline>
     <source src="stars.mp4" type="video/mp4">
   </video>
 
+  <!-- Title -->
   <h1 class="title">The Gorgeous George Show</h1>
+
+  <!-- Looping video on the right half -->
+  <div class="side-video">
+    <video controls loop playsinline>
+      <source src="Cry%20Baby%20George.mp4" type="video/mp4">
+    </video>
+  </div>
+
 </body>
 </html>
