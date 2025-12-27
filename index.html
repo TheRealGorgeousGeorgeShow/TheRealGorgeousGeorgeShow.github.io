@@ -14,15 +14,14 @@
       overflow-y: auto;
     }
 
-    /* Background stars (stays behind everything). 
-       If you want the background to scroll too, remove position: fixed below. */
+    /* Stars background (fixed + visible) */
     video.bg {
       position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -2;
+      z-index: 0;          /* ✅ NOT negative */
     }
 
     /* Optional dark overlay for readability */
@@ -30,17 +29,18 @@
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.15);
-      z-index: -1;
+      z-index: 0;          /* same layer as bg is fine */
       pointer-events: none;
     }
 
-    /* Page wrapper so content scrolls */
+    /* Everything you want to scroll goes in here */
     .page {
+      position: relative;
+      z-index: 1;          /* ✅ above the stars */
       padding: 20px;
-      padding-top: 20px;
     }
 
-    /* Title (now scrolls normally) */
+    /* Title (scrolls now) */
     .title {
       text-align: center;
       margin: 0 0 22px;
@@ -56,22 +56,9 @@
     }
 
     @keyframes glowPulse {
-      0% {
-        text-shadow:
-          0 3px 8px rgba(0,0,0,0.75),
-          0 0 10px rgba(212,175,55,0.35);
-      }
-      50% {
-        text-shadow:
-          0 4px 12px rgba(0,0,0,0.85),
-          0 0 22px rgba(212,175,55,0.7),
-          0 0 40px rgba(212,175,55,0.35);
-      }
-      100% {
-        text-shadow:
-          0 3px 8px rgba(0,0,0,0.75),
-          0 0 10px rgba(212,175,55,0.35);
-      }
+      0%   { text-shadow: 0 3px 8px rgba(0,0,0,0.75), 0 0 10px rgba(212,175,55,0.35); }
+      50%  { text-shadow: 0 4px 12px rgba(0,0,0,0.85), 0 0 22px rgba(212,175,55,0.7), 0 0 40px rgba(212,175,55,0.35); }
+      100% { text-shadow: 0 3px 8px rgba(0,0,0,0.75), 0 0 10px rgba(212,175,55,0.35); }
     }
 
     /* Two-column layout (scrolls as a unit) */
@@ -136,21 +123,16 @@
       transform: translateX(4px);
     }
 
-    /* Right column video (scrolls normally) */
+    /* Right column video (scrolls) */
     .side-video video {
       width: 100%;
-      height: auto;
       aspect-ratio: 16 / 9;
+      height: auto;
       object-fit: cover;
 
       border: 2px solid #d4af37;
       border-radius: 10px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-    }
-
-    /* Add real scroll length (optional placeholder space) */
-    .spacer {
-      height: 900px;
     }
 
     /* Mobile: stack */
@@ -172,7 +154,6 @@
     <h1 class="title">The Gorgeous George Show</h1>
 
     <div class="layout">
-      <!-- Left: logo + buttons -->
       <div class="nav-wrap">
         <div class="nav-logo">
           <img src="logo.png" alt="The Gorgeous George Show Logo">
@@ -190,14 +171,10 @@
         </nav>
       </div>
 
-      <!-- Right: looping video -->
       <div class="side-video">
-        <video autoplay muted loop playsinline controls>
+        <video autoplay muted loop playsinline>
           <source src="Cry%20Baby%20George.mp4" type="video/mp4">
         </video>
-
-        <!-- optional extra space so you can feel the scroll; remove later -->
-        <div class="spacer"></div>
       </div>
     </div>
   </div>
