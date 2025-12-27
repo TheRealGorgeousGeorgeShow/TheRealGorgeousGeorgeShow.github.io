@@ -8,58 +8,54 @@
   <style>
     html, body {
       margin: 0;
+      padding: 0;
       height: 100%;
       background: black;
     }
 
-    /* Fullscreen background video */
-    video.bg {
+    /* Background video (UNCHANGED from the working version) */
+    video {
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       z-index: 0;
     }
 
-    /* Header text (fixed top-right half) */
-    h1.header {
+    /* Fixed header text */
+    .title {
       position: fixed;
       top: 16px;
-      right: 20px;
-      width: min(50vw, 900px);   /* top-right half, but capped */
+      right: 16px;
+      width: 50vw;               /* top-right half */
       text-align: right;
 
       font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, "Times New Roman", serif;
-      font-size: clamp(22px, 3.2vw, 54px);  /* MUCH smaller than before */
+      color: #d4af37;            /* gold */
+
+      /* smaller + safer so it doesn't cut off */
+      font-size: clamp(22px, 3.2vw, 52px);
       line-height: 1.05;
       font-weight: 600;
-      letter-spacing: 0.5px;
 
-      color: #d4af37; /* gold */
-      text-shadow: 0 2px 8px rgba(0,0,0,0.75);
-
-      z-index: 2;
+      z-index: 1;                /* above the video */
       margin: 0;
       padding: 0;
-      pointer-events: none;
 
-      /* allow wrapping instead of cutting off */
+      /* allow wrapping instead of disappearing off-screen */
       white-space: normal;
-      overflow-wrap: anywhere;
-    }
-
-    /* Optional: subtle dark backing so gold stays readable */
-    .shade {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.15);
-      z-index: 1;
-      pointer-events: none;
     }
   </style>
 </head>
 
 <body>
-  <!-- IMPORTANT: Make sure this filename
+  <!-- stars.mp4 IS HERE -->
+  <video autoplay muted loop playsinline>
+    <source src="stars.mp4" type="video/mp4">
+  </video>
 
+  <h1 class="title">The Gorgeous George Show</h1>
+</body>
+</html>
