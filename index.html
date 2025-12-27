@@ -33,7 +33,7 @@
       pointer-events: none;
     }
 
-    /* Page content */
+    /* Page content (scrolls) */
     .page {
       position: relative;
       z-index: 1;
@@ -43,7 +43,7 @@
     /* Title */
     .title {
       text-align: center;
-      margin: 0 0 22px;
+      margin: 0 0 24px;
 
       font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, "Times New Roman", serif;
       color: #d4af37;
@@ -57,20 +57,17 @@
 
     @keyframes glowPulse {
       0% {
-        text-shadow:
-          0 3px 8px rgba(0,0,0,0.75),
-          0 0 10px rgba(212,175,55,0.35);
+        text-shadow: 0 3px 8px rgba(0,0,0,0.75),
+                     0 0 10px rgba(212,175,55,0.35);
       }
       50% {
-        text-shadow:
-          0 4px 12px rgba(0,0,0,0.85),
-          0 0 22px rgba(212,175,55,0.7),
-          0 0 40px rgba(212,175,55,0.35);
+        text-shadow: 0 4px 12px rgba(0,0,0,0.85),
+                     0 0 22px rgba(212,175,55,0.7),
+                     0 0 40px rgba(212,175,55,0.35);
       }
       100% {
-        text-shadow:
-          0 3px 8px rgba(0,0,0,0.75),
-          0 0 10px rgba(212,175,55,0.35);
+        text-shadow: 0 3px 8px rgba(0,0,0,0.75),
+                     0 0 10px rgba(212,175,55,0.35);
       }
     }
 
@@ -78,7 +75,7 @@
     .layout {
       display: grid;
       grid-template-columns: 360px 1fr;
-      gap: 20px;
+      gap: 24px;
       align-items: start;
     }
 
@@ -110,7 +107,6 @@
     }
 
     .nav a {
-      display: block;
       width: 330px;
       max-width: 100%;
       padding: 18px 24px;
@@ -124,27 +120,29 @@
 
       color: #d4af37;
       border: 2px solid #d4af37;
-      background: rgba(212, 175, 55, 0.08);
-
+      background: rgba(212,175,55,0.08);
       border-radius: 8px;
-      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+
+      transition: background 0.25s ease,
+                  box-shadow 0.25s ease,
+                  transform 0.2s ease;
     }
 
     .nav a:hover {
-      background: rgba(212, 175, 55, 0.18);
+      background: rgba(212,175,55,0.18);
       box-shadow: 0 0 14px rgba(212,175,55,0.45);
       transform: translateX(4px);
     }
 
-    /* Right column video + paragraph */
+    /* Right column */
     .side-video {
-      text-align: center;
+      display: block;
     }
 
     .side-video video {
       width: 75%;
-      margin: 0 auto 18px;
       display: block;
+      margin: 0 auto 16px;
 
       aspect-ratio: 16 / 9;
       height: auto;
@@ -156,12 +154,13 @@
     }
 
     .official-text {
-      max-width: 75%;
+      width: 75%;              /* flush with video */
       margin: 0 auto;
+      text-align: left;
 
       font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
       font-size: 50px;
-      line-height: 1.4;
+      line-height: 1.45;
       letter-spacing: 0.4px;
 
       color: #d4af37;
@@ -174,14 +173,14 @@
       .layout { grid-template-columns: 1fr; }
       .nav a { width: 100%; }
       .side-video video,
-      .official-text { max-width: 100%; }
+      .official-text { width: 100%; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Background stars -->
+  <!-- Stars -->
   <video class="bg" autoplay muted loop playsinline>
     <source src="stars.mp4" type="video/mp4">
   </video>
