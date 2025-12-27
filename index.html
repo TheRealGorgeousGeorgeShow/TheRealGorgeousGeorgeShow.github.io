@@ -1,4 +1,4 @@
-<!doctype html><!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -6,60 +6,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
-    /* Reset */
     html, body {
       margin: 0;
-      padding: 0;
       height: 100%;
       background: black;
-      overflow: hidden;
     }
 
     /* Fullscreen background video */
     video.bg {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: -1;
+      z-index: 0;
     }
 
-    /* Header text */
+    /* Header text (fixed top-right half) */
     h1.header {
       position: fixed;
-      top: 30px;
-      right: 40px;
-      width: 50vw;               /* right half of screen */
+      top: 16px;
+      right: 20px;
+      width: min(50vw, 900px);   /* top-right half, but capped */
       text-align: right;
 
-      font-family: "Century Old Style", "Old Century", "Century Schoolbook", "Times New Roman", serif;
-      font-size: clamp(42px, 6vw, 96px);
+      font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, "Times New Roman", serif;
+      font-size: clamp(22px, 3.2vw, 54px);  /* MUCH smaller than before */
+      line-height: 1.05;
       font-weight: 600;
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
 
-      color: #d4af37;            /* classic gold */
-      text-shadow:
-        0 2px 6px rgba(0,0,0,0.7),
-        0 0 12px rgba(212,175,55,0.35);
+      color: #d4af37; /* gold */
+      text-shadow: 0 2px 8px rgba(0,0,0,0.75);
 
-      z-index: 10;
-      pointer-events: none;     /* prevents accidental clicks */
-      white-space: nowrap;
+      z-index: 2;
+      margin: 0;
+      padding: 0;
+      pointer-events: none;
+
+      /* allow wrapping instead of cutting off */
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    /* Optional: subtle dark backing so gold stays readable */
+    .shade {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.15);
+      z-index: 1;
+      pointer-events: none;
     }
   </style>
 </head>
 
 <body>
+  <!-- IMPORTANT: Make sure this filename
 
-  <!-- Background stars video -->
-  <video class="bg" autoplay muted loop playsinline>
-    <source src="stars.mp4" type="video/mp4">
-  </video>
-
-  <!-- Fixed header -->
-  <h1 class="header">The Gorgeous George Show</h1>
-
-</body>
-</html>
