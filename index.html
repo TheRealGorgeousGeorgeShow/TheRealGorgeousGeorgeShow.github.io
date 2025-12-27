@@ -14,17 +14,17 @@
       overflow-y: auto;
     }
 
-    /* Stars background (fixed + visible) */
+    /* Stars background */
     video.bg {
       position: fixed;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      z-index: 0; /* keep non-negative so it doesn't disappear */
+      z-index: 0;
     }
 
-    /* Optional dark overlay for readability */
+    /* Dark overlay for readability */
     .overlay {
       position: fixed;
       inset: 0;
@@ -33,14 +33,14 @@
       pointer-events: none;
     }
 
-    /* Everything that scrolls */
+    /* Page content */
     .page {
       position: relative;
-      z-index: 1; /* above stars */
+      z-index: 1;
       padding: 20px;
     }
 
-    /* Centered gold title with pulse */
+    /* Title */
     .title {
       text-align: center;
       margin: 0 0 22px;
@@ -82,7 +82,7 @@
       align-items: start;
     }
 
-    /* Left column (logo + buttons) */
+    /* Left column */
     .nav-wrap {
       display: flex;
       flex-direction: column;
@@ -136,10 +136,14 @@
       transform: translateX(4px);
     }
 
-    /* Right column video (25% smaller) */
+    /* Right column video + paragraph */
+    .side-video {
+      text-align: center;
+    }
+
     .side-video video {
-      width: 75%;          /* ✅ 25% smaller */
-      margin: 0 auto;      /* center in the right column */
+      width: 75%;
+      margin: 0 auto 18px;
       display: block;
 
       aspect-ratio: 16 / 9;
@@ -151,29 +155,43 @@
       box-shadow: 0 12px 30px rgba(0,0,0,0.6);
     }
 
-    /* Mobile: stack layout */
+    .official-text {
+      max-width: 75%;
+      margin: 0 auto;
+
+      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1.4;
+      letter-spacing: 0.4px;
+
+      color: #d4af37;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    /* Mobile */
     @media (max-width: 900px) {
       .title { font-size: 56px; }
       .layout { grid-template-columns: 1fr; }
       .nav a { width: 100%; }
-      .side-video video { width: 100%; } /* full width on mobile */
+      .side-video video,
+      .official-text { max-width: 100%; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Stars background -->
+
+  <!-- Background stars -->
   <video class="bg" autoplay muted loop playsinline>
     <source src="stars.mp4" type="video/mp4">
   </video>
-
   <div class="overlay"></div>
 
   <div class="page">
     <h1 class="title">The Gorgeous George Show</h1>
 
     <div class="layout">
-      <!-- Left: logo + navigation -->
+      <!-- Left -->
       <div class="nav-wrap">
         <div class="nav-logo">
           <img src="logo.png" alt="The Gorgeous George Show Logo">
@@ -191,13 +209,19 @@
         </nav>
       </div>
 
-      <!-- Right: looping video -->
+      <!-- Right -->
       <div class="side-video">
         <video autoplay muted loop playsinline>
           <source src="Cry%20Baby%20George.mp4" type="video/mp4">
         </video>
+
+        <p class="official-text">
+          This is the official website of The Gorgeous George Show. Any other websites pertaining to
+          The Gorgeous George Show are fake. This website is the true narrative of the Gorgeous George saga.
+        </p>
       </div>
     </div>
   </div>
+
 </body>
 </html>
