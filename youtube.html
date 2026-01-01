@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Goon YouTube Links | The Gorgeous George Show</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background: black;
+      overflow-y: auto;
+    }
+
+    /* Stars background */
+    video.bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.18);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      padding: 24px;
+    }
+
+    /* Back button */
+    .back {
+      display: inline-block;
+      margin-bottom: 18px;
+
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 22px;
+      color: #d4af37;
+      text-decoration: none;
+
+      border: 2px solid #d4af37;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: rgba(212,175,55,0.08);
+
+      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+    }
+
+    .back:hover {
+      background: rgba(212,175,55,0.18);
+      box-shadow: 0 0 14px rgba(212,175,55,0.45);
+      transform: translateX(3px);
+    }
+
+    /* Title glow */
+    .title {
+      text-align: center;
+      margin: 0 0 12px;
+
+      font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, serif;
+      color: #d4af37;
+      font-size: 66px;
+      line-height: 1.05;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+
+      animation: glowPulse 4.5s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        text-shadow:
+          0 3px 8px rgba(0,0,0,0.75),
+          0 0 10px rgba(212,175,55,0.35);
+      }
+      50% {
+        text-shadow:
+          0 4px 12px rgba(0,0,0,0.85),
+          0 0 22px rgba(212,175,55,0.7),
+          0 0 40px rgba(212,175,55,0.35);
+      }
+      100% {
+        text-shadow:
+          0 3px 8px rgba(0,0,0,0.75),
+          0 0 10px rgba(212,175,55,0.35);
+      }
+    }
+
+    .subtitle {
+      max-width: 1000px;
+      margin: 0 auto 24px;
+      text-align: center;
+
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 22px;
+      line-height: 1.4;
+      letter-spacing: 0.25px;
+
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    /* Links grid */
+    .grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 2px solid rgba(212,175,55,0.9);
+      border-radius: 14px;
+      background: rgba(0,0,0,0.55);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      padding: 18px 20px;
+
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 22px rgba(212,175,55,0.35),
+                  0 16px 40px rgba(0,0,0,0.7);
+    }
+
+    .name {
+      margin: 0 0 10px;
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 26px;
+      letter-spacing: 0.35px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    .desc {
+      margin: 0 0 14px;
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 20px;
+      line-height: 1.35;
+      letter-spacing: 0.2px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    .link {
+      display: inline-block;
+      text-decoration: none;
+
+      border: 2px solid #d4af37;
+      border-radius: 8px;
+      padding: 10px 14px;
+
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 18px;
+      letter-spacing: 0.35px;
+
+      background: rgba(212,175,55,0.08);
+      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+    }
+
+    .link:hover {
+      background: rgba(212,175,55,0.18);
+      box-shadow: 0 0 14px rgba(212,175,55,0.45);
+      transform: translateY(-2px);
+    }
+
+    /* Mobile */
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+      .title { font-size: 48px; }
+      .subtitle { font-size: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <video class="bg" autoplay muted loop playsinline>
+    <source src="stars.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+
+  <div class="page">
+    <a href="index.html" class="back">← Back to Home</a>
+
+    <h1 class="title">Goon YouTube Links</h1>
+    <div class="subtitle">
+      A curated list of YouTube channels, clips, and archives connected to the GG universe.
+    </div>
+
+    <div class="grid">
+      <!-- LINK CARD -->
+      <div class="card">
+        <h2 class="name">Channel / Playlist Name</h2>
+        <p class="desc">Short description of the channel or why it matters.</p>
+        <a class="link" href="#" target="_blank" rel="noopener">Visit on YouTube</a>
+      </div>
+
+      <div class="card">
+        <h2 class="name">Another Goon Channel</h2>
+        <p class="desc">Add context, era, or relevance.</p>
+        <a class="link" href="#" target="_blank" rel="noopener">Visit on YouTube</a>
+      </div>
+
+      <div class="card">
+        <h2 class="name">GG Clips Archive</h2>
+        <p class="desc">Clips, edits, and highlights.</p>
+        <a class="link" href="#" target="_blank" rel="noopener">Watch Clips</a>
+      </div>
+
+      <div class="card">
+        <h2 class="name">Related Commentary</h2>
+        <p class="desc">Reactions, breakdowns, or analysis.</p>
+        <a class="link" href="#" target="_blank" rel="noopener">Open Channel</a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
