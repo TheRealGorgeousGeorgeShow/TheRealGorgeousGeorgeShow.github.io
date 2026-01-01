@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>1307 | The Gorgeous George Show</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background: black;
+      overflow-y: auto;
+    }
+
+    /* Stars background */
+    video.bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.18);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      padding: 24px;
+    }
+
+    /* Back button */
+    .back {
+      display: inline-block;
+      margin-bottom: 18px;
+
+      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
+      font-size: 22px;
+      color: #d4af37;
+      text-decoration: none;
+
+      border: 2px solid #d4af37;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: rgba(212,175,55,0.08);
+
+      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+    }
+
+    .back:hover {
+      background: rgba(212,175,55,0.18);
+      box-shadow: 0 0 14px rgba(212,175,55,0.45);
+      transform: translateX(3px);
+    }
+
+    /* Title glow */
+    .title {
+      text-align: center;
+      margin: 0 0 14px;
+
+      font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, "Times New Roman", serif;
+      color: #d4af37;
+      font-size: 72px;
+      line-height: 1.05;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+
+      animation: glowPulse 4.5s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        text-shadow:
+          0 3px 8px rgba(0,0,0,0.75),
+          0 0 10px rgba(212,175,55,0.35);
+      }
+      50% {
+        text-shadow:
+          0 4px 12px rgba(0,0,0,0.85),
+          0 0 22px rgba(212,175,55,0.7),
+          0 0 40px rgba(212,175,55,0.35);
+      }
+      100% {
+        text-shadow:
+          0 3px 8px rgba(0,0,0,0.75),
+          0 0 10px rgba(212,175,55,0.35);
+      }
+    }
+
+    .subtitle {
+      max-width: 1100px;
+      margin: 0 auto 22px;
+      text-align: center;
+
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 22px;
+      line-height: 1.4;
+      letter-spacing: 0.25px;
+
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    /* Layout */
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      border: 2px solid rgba(212,175,55,0.9);
+      border-radius: 12px;
+      background: rgba(0,0,0,0.55);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+
+    .content {
+      padding: 18px 20px 22px;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 28px;
+      letter-spacing: 0.4px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    .text {
+      margin: 0 0 14px;
+      color: #d4af37;
+      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1.45;
+      letter-spacing: 0.25px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    .facts {
+      list-style: none;
+      padding: 16px;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .facts li {
+      border: 1px solid rgba(212,175,55,0.55);
+      background: rgba(212,175,55,0.08);
+      border-radius: 10px;
+      padding: 12px 14px;
+
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 20px;
+      line-height: 1.3;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    .facts strong { color: rgba(212,175,55,0.95); }
+
+    .note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-top: 2px solid rgba(212,175,55,0.55);
+
+      color: rgba(212,175,55,0.9);
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 18px;
+      line-height: 1.35;
+      letter-spacing: 0.25px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    /* Mobile */
+    @media (max-width: 950px) {
+      .wrap { grid-template-columns: 1fr; }
+      .title { font-size: 56px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <video class="bg" autoplay muted loop playsinline>
+    <source src="stars.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+
+  <div class="page">
+    <a href="index.html" class="back">← Back to Home</a>
+
+    <h1 class="title">1307</h1>
+    <div class="subtitle">
+      A page dedicated to 1307 Stoneycreek Dr — the house at the center of a legendary (and avoidable) saga.
+    </div>
+
+    <div class="wrap">
+      <!-- Main narrative -->
+      <div class="card">
+        <div class="content">
+          <h2 class="section-title">Summary</h2>
+          <p class="text">
+            According to the story as told within the Gorgeous George universe, George inherited
+            the property at <strong>1307 Stoneycreek Dr</strong>. The house was reportedly paid off at the time.
+          </p>
+          <p class="text">
+            The narrative continues that George later took out a mortgage against the property, and then
+            allegedly could not keep up with the payments. The result, according to this account, was
+            the property being lost to the bank.
+          </p>
+
+          <h2 class="section-title">What People Say Happened</h2>
+          <p class="text">
+            The short version: a paid-off house + a mortgage + missed payments = a foreclosure-shaped problem.
+            If you want to add specific dates, documents, or clips later, this section can become the “timeline.”
+          </p>
+
+          <h2 class="section-title">Current Value (claimed)</h2>
+          <p class="text">
+            The house is said to be worth around <strong>$500,000</strong> today (estimate claimed in the saga).
+          </p>
+
+          <div class="note">
+            <strong>Note:</strong> This page is written as part of a satirical “GG saga” narrative.
+            If you’re going to cite real-world details (like values, sale history, or foreclosure records),
+            consider linking the exact public source you’re referencing.
+          </div>
+        </div>
+      </div>
+
+      <!-- Fact box -->
+      <div class="card">
+        <ul class="facts">
+          <li><strong>Address:</strong> 1307 Stoneycreek Dr</li>
+          <li><strong>Theme:</strong> “Paid-off house → mortgage → lost to bank”</li>
+          <li><strong>Claimed value:</strong> ~$500K</li>
+          <li><strong>Status:</strong> “Lost to the bank” (per saga)</li>
+          <li><strong>Evidence:</strong> Add clips/photos/links here later</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
