@@ -101,7 +101,7 @@
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 360px 1fr;
+      grid-template-columns: 480px 1fr; /* wider left column like Kevin */
       gap: 22px;
       align-items: start;
     }
@@ -119,7 +119,8 @@
       text-align: center;
     }
 
-    .portrait img {
+    /* Glenry video styling (manual play, audio allowed) */
+    .portrait video {
       width: 100%;
       height: auto;
       display: block;
@@ -127,6 +128,10 @@
       border: 2px solid #d4af37;
       border-radius: 10px;
       background: black;
+    }
+
+    .portrait video:hover {
+      box-shadow: 0 0 22px rgba(212,175,55,0.45);
     }
 
     .portrait .hint {
@@ -196,6 +201,7 @@
 
 <body>
 
+  <!-- Background -->
   <video class="bg" autoplay muted loop playsinline>
     <source src="stars.mp4" type="video/mp4">
   </video>
@@ -207,11 +213,14 @@
     <h1 class="title">Glenry's Bio</h1>
 
     <div class="bio">
-      <!-- Left: portrait -->
+      <!-- Left: Glenry video (manual play, audio) -->
       <div class="card portrait">
-        <!-- Replace glenry.jpg with your real image filename -->
-        <img src="glenry.jpg" alt="Glenry portrait">
-        <div class="hint">Replace <strong>glenry.jpg</strong> with your actual Glenry image.</div>
+        <video controls playsinline preload="metadata">
+          <source src="GlenryMessage.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+
+        <div class="hint">Video: <strong>GlenryMessage.mp4</strong> (manual play for audio)</div>
       </div>
 
       <!-- Right: bio content -->
@@ -247,3 +256,4 @@
 
 </body>
 </html>
+
