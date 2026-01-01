@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The Book | The Gorgeous George Show</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      background: black;
+      overflow-y: auto;
+    }
+
+    /* Stars background */
+    video.bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.18);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      padding: 24px;
+    }
+
+    /* Back button */
+    .back {
+      display: inline-block;
+      margin-bottom: 18px;
+
+      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
+      font-size: 22px;
+      color: #d4af37;
+      text-decoration: none;
+
+      border: 2px solid #d4af37;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: rgba(212,175,55,0.08);
+
+      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+    }
+
+    .back:hover {
+      background: rgba(212,175,55,0.18);
+      box-shadow: 0 0 14px rgba(212,175,55,0.45);
+      transform: translateX(3px);
+    }
+
+    /* Title glow */
+    .title {
+      text-align: center;
+      margin: 0 0 10px;
+
+      font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, "Times New Roman", serif;
+      color: #d4af37;
+      font-size: 66px;
+      line-height: 1.05;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+
+      animation: glowPulse 4.5s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0% {
+        text-shadow:
+          0 3px 8px rgba(0,0,0,0.75),
+          0 0 10px rgba(212,175,55,0.35);
+      }
+      50% {
+        text-shadow:
+          0 4px 12px rgba(0,0,0,0.85),
+          0 0 22px rgba(212,175,55,0.7),
+          0 0 40px rgba(212,175,55,0.35);
+      }
+      100% {
+        text-shadow:
+          0 3px 8px rgba(0,0,0,0.75),
+          0 0 10px rgba(212,175,55,0.35);
+      }
+    }
+
+    .subtitle {
+      max-width: 1100px;
+      margin: 0 auto 22px;
+      text-align: center;
+
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 22px;
+      line-height: 1.4;
+      letter-spacing: 0.25px;
+
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    /* Layout */
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      border: 2px solid rgba(212,175,55,0.9);
+      border-radius: 12px;
+      background: rgba(0,0,0,0.55);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+
+    /* Cover area */
+    .cover {
+      padding: 16px;
+      text-align: center;
+    }
+
+    .cover img {
+      width: 100%;
+      height: auto;
+      display: block;
+
+      border: 2px solid #d4af37;
+      border-radius: 10px;
+      background: black;
+    }
+
+    .cover .hint {
+      margin-top: 12px;
+      color: rgba(212,175,55,0.95);
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 18px;
+      letter-spacing: 0.3px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    /* Text content */
+    .content {
+      padding: 18px 20px 22px;
+    }
+
+    .section-title {
+      margin: 0 0 10px;
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 28px;
+      letter-spacing: 0.4px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    .text {
+      margin: 0 0 14px;
+      color: #d4af37;
+      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1.45;
+      letter-spacing: 0.25px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    .bullets {
+      margin: 0 0 16px 22px;
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 20px;
+      line-height: 1.35;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    /* Buttons */
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+
+      border: 2px solid #d4af37;
+      border-radius: 10px;
+      padding: 12px 16px;
+
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 18px;
+      letter-spacing: 0.35px;
+
+      background: rgba(212,175,55,0.08);
+      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background: rgba(212,175,55,0.18);
+      box-shadow: 0 0 14px rgba(212,175,55,0.45);
+      transform: translateY(-2px);
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .wrap { grid-template-columns: 1fr; }
+      .title { font-size: 52px; }
+    }
+    @media (max-width: 600px) {
+      .title { font-size: 44px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <video class="bg" autoplay muted loop playsinline>
+    <source src="stars.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+
+  <div class="page">
+    <a href="index.html" class="back">← Back to Home</a>
+
+    <h1 class="title">What’s Causing All of This</h1>
+    <div class="subtitle">
+      The official book page for the Gorgeous George saga.
+    </div>
+
+    <div class="wrap">
+      <!-- Left: cover -->
+      <div class="card cover">
+        <!-- Upload your cover image and name it book-cover.jpg OR change the src below -->
+        <img src="book-cover.jpg" alt="What’s Causing All of This - cover">
+        <div class="hint">Upload a cover image named <strong>book-cover.jpg</strong> (or change the filename here).</div>
+      </div>
+
+      <!-- Right: details -->
+      <div class="card content">
+        <h2 class="section-title">About the Book</h2>
+        <p class="text">
+          <em>What’s Causing All of This</em> is a semi-autobiographical, satirical memoir told in a
+          stream-of-consciousness style — documenting the Gorgeous George universe through personal anecdotes,
+          exaggerated storytelling, and questionable decisions.
+        </p>
+
+        <h2 class="section-title">What You’ll Find Inside</h2>
+        <ul class="bullets">
+          <li>Stories, rants, and “explanations” from the GG timeline</li>
+          <li>Recurring characters and sagas</li>
+          <li>Comedy, chaos, and alleged events</li>
+          <li>Unreliable narration (by design)</li>
+        </ul>
+
+        <h2 class="section-title">Links</h2>
+        <p class="text">
+          Add your links below. These can point to a PDF, a store page, a timeline version, or anything else.
+        </p>
+
+        <div class="actions">
+          <!-- Replace # with real destinations when ready -->
+          <a class="btn" href="#" target="_blank" rel="noopener">Read / Download</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">Buy the Book</a>
+          <a class="btn" href="#" target="_blank" rel="noopener">Timeline Version</a>
+          <a class="btn" href="content.html">Related GG Content</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
