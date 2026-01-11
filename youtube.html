@@ -14,6 +14,34 @@
       overflow-y: auto;
     }
 
+    /* Channel profile image */
+.channel {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.channel img {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  border: 2px solid #d4af37;
+  background: black;
+  box-shadow: 0 0 12px rgba(212,175,55,0.35);
+}
+
+.channel-info {
+  flex: 1;
+}
+
+.channel-info .name {
+  margin: 0 0 4px;
+}
+
+
     /* Stars background */
     video.bg {
       position: fixed;
