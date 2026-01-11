@@ -15,7 +15,7 @@
       overflow-y: auto;
     }
 
-    /* Full-screen stars background (fixed) */
+    /* Background stars */
     video.bg {
       position: fixed;
       inset: 0;
@@ -33,14 +33,13 @@
       pointer-events: none;
     }
 
-    /* Page content scrolls; background stays fixed */
     .page {
       position: relative;
       z-index: 1;
       padding: 24px;
     }
 
-    /* Layout: left column (logo + buttons) + right content */
+    /* Layout */
     .layout {
       max-width: 1400px;
       margin: 0 auto;
@@ -49,7 +48,7 @@
       align-items: flex-start;
     }
 
-    /* Left column */
+    /* Sidebar */
     .sidebar {
       width: 330px;
       flex: 0 0 330px;
@@ -58,7 +57,7 @@
     .logo {
       width: 100%;
       display: block;
-      margin: 0 0 16px 0;
+      margin-bottom: 16px;
       border-radius: 12px;
       border: 2px solid rgba(212,175,55,0.9);
       background: rgba(0,0,0,0.55);
@@ -73,19 +72,18 @@
 
     .nav a {
       display: block;
-      text-decoration: none;
       text-align: center;
+      text-decoration: none;
 
-      /* “Gold rectangle” but slightly translucent so gold text stays readable */
       background: rgba(212,175,55,0.14);
       border: 2px solid rgba(212,175,55,0.95);
       border-radius: 10px;
 
-      padding: 18px 16px;          /* 50% bigger feel */
-      font-size: 24px;             /* 50% bigger feel */
+      padding: 18px 16px;
+      font-size: 24px;
 
       color: #d4af37;
-      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
+      font-family: "Galliard BT", "Garamond", serif;
       letter-spacing: 0.25px;
 
       box-shadow: 0 10px 25px rgba(0,0,0,0.55);
@@ -98,27 +96,30 @@
       box-shadow: 0 0 18px rgba(212,175,55,0.35), 0 16px 40px rgba(0,0,0,0.7);
     }
 
-    /* Right column */
+    /* Main content */
     .main {
-      flex: 1 1 auto;
+      flex: 1;
       min-width: 0;
-      padding-top: 6px;
+      text-align: center;
     }
 
     /* Title */
     .title {
-      margin: 0 0 18px;
-      text-align: center;
-
-      font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, "Times New Roman", serif;
-      font-size: 100px; /* you said you like 100px */
+      margin: 0 0 22px;
+      font-family: "Century Old Style", "Old Century", Georgia, serif;
+      font-size: 100px;
       line-height: 1.03;
       font-weight: 600;
       letter-spacing: 0.5px;
       color: #d4af37;
-
       animation: glowPulse 4.5s ease-in-out infinite;
-      text-shadow: 0 3px 8px rgba(0,0,0,0.75);
+    }
+
+    .title .tm {
+      font-size: 34px;
+      vertical-align: super;
+      margin-left: 6px;
+      opacity: 0.85;
     }
 
     @keyframes glowPulse {
@@ -140,43 +141,36 @@
       }
     }
 
-    /* Right-side content block (video + paragraph) aligned to the right */
+    /* Centered feature block */
     .feature {
-      display: flex;
-      justify-content: flex-end; /* pushes the block to the right side */
-    }
-
-    /* This block is “the right half”, then 25% smaller (so ~75% of that) */
-    .feature-inner {
-      width: min(680px, 38vw); /* ~right-half-ish, scaled down */
+      max-width: 820px;
+      margin: 0 auto;
     }
 
     .video-box {
-      border: 2px solid #d4af37; /* thin gold border */
+      border: 2px solid #d4af37;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
       background: black;
-      margin-bottom: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      margin-bottom: 18px;
     }
 
     .video-box video {
       width: 100%;
-      height: auto;
       display: block;
     }
 
-    /* Paragraph styling + subtle spacing between paragraphs */
+    /* Paragraphs */
     .text {
       color: #d4af37;
-      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
+      font-family: "Galliard BT", "Garamond", serif;
       font-size: 22px;
       line-height: 1.45;
       letter-spacing: 0.25px;
       text-shadow: 0 2px 6px rgba(0,0,0,0.75);
-
-      margin: 0 0 18px; /* subtle margin between paragraphs */
-      text-align: left; /* flush left */
+      margin: 0 0 18px;
+      text-align: left;
     }
 
     /* Responsive */
@@ -187,7 +181,6 @@
 
       .sidebar {
         width: 100%;
-        flex: 0 0 auto;
         max-width: 520px;
         margin: 0 auto;
       }
@@ -196,28 +189,15 @@
         width: 100%;
       }
 
-      .feature {
-        justify-content: center;
-      }
-
-      .feature-inner {
-        width: min(820px, 92vw);
-      }
-
       .title {
         font-size: 64px;
-      }
-
-      .nav a {
-        font-size: 22px;
-        padding: 16px 14px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- Background stars -->
+
   <video class="bg" autoplay muted loop playsinline>
     <source src="stars.mp4" type="video/mp4" />
   </video>
@@ -226,10 +206,9 @@
   <div class="page">
     <div class="layout">
 
-      <!-- LEFT: Logo + Buttons -->
+      <!-- Sidebar -->
       <aside class="sidebar">
         <img class="logo" src="logo.png" alt="The Gorgeous George Show Logo" />
-
         <nav class="nav">
           <a href="gallery.html">Photo Gallery</a>
           <a href="kevin.html">Kevin's Bio</a>
@@ -242,49 +221,52 @@
         </nav>
       </aside>
 
-      <!-- RIGHT: Title + Feature video + Paragraphs -->
+      <!-- Main -->
       <main class="main">
-        <h1 class="title">The Gorgeous George Show</h1>
+        <h1 class="title">
+          The Gorgeous George Show<span class="tm">™</span>
+        </h1>
 
-        <section class="feature">
-          <div class="feature-inner">
-
-            <div class="video-box">
-              <video autoplay muted loop playsinline>
-                <source src="Cry Baby George.mp4" type="video/mp4" />
-              </video>
-            </div>
-
-            <!-- Existing paragraph + continuation, broken into clean paragraphs -->
-            <p class="text">
-              This is the official website of The Gorgeous George Show. Any other websites pertaining to The Gorgeous George Show are fake. This website is the true narrative of the Gorgeous George saga.
-            </p>
-
-            <p class="text">
-              George Yarid is a Richmond, Virginia public-access lifer whose greatest talent appears to be confusing longevity with legitimacy. Calling himself “Gorgeous George,” Yarid has spent decades performing the same trick: placing a camera in front of himself and mistaking the act of being recorded for evidence that something worth watching is happening.
-            </p>
-
-            <p class="text">
-              His long-running show functions less as entertainment and more as a public archive of unchecked ego—an endless stream of rambling monologues, recycled grievances, and half-formed bits delivered with the confidence of someone who has never seriously reconsidered a thought. What may have once been harmless DIY enthusiasm eventually calcified into a persona built on bitterness, repetition, and the unshakable belief that the audience is wrong for not applauding.
-            </p>
-
-            <p class="text">
-              Yarid’s work is famously unedited, which is unfortunate, because it documents every weakness in real time: the lack of timing, the absence of structure, and a stunning inability to read a room—any room. Admirers may frame this as “outsider art,” but critics see it for what it is: someone refusing to evolve while demanding recognition for not quitting.
-            </p>
-
-            <p class="text">
-              Across television, print, and online platforms, Yarid presents himself as a persecuted genius sabotaged by everyone around him, despite being the only constant in every failed collaboration, burned bridge, and personal collapse. His autobiography offers neither insight nor growth; instead, it reads as a bloated complaint file, cataloging decades of perceived slights with zero self-reflection.
-            </p>
-
-            <p class="text">
-              In the end, George Yarid’s true achievement isn’t cultural impact or creative success—it’s endurance. He has managed to outlast relevance, criticism, and self-awareness alike, continuing to broadcast as if persistence alone might someday transform noise into meaning.
-            </p>
-
+        <div class="feature">
+          <div class="video-box">
+            <video autoplay muted loop playsinline>
+              <source src="Cry Baby George.mp4" type="video/mp4" />
+            </video>
           </div>
-        </section>
+
+          <p class="text">
+            This is the official website of The Gorgeous George Show. Any other websites pertaining
+            to The Gorgeous George Show are fake. This website is the true narrative of the Gorgeous
+            George saga.
+          </p>
+
+          <p class="text">
+            George Yarid is a Richmond, Virginia public-access lifer whose greatest talent appears to
+            be confusing longevity with legitimacy. Calling himself “Gorgeous George,” Yarid has spent
+            decades performing the same trick: placing a camera in front of himself and mistaking the
+            act of being recorded for evidence that something worth watching is happening.
+          </p>
+
+          <p class="text">
+            His long-running show functions less as entertainment and more as a public archive of
+            unchecked ego—an endless stream of rambling monologues, recycled grievances, and half-formed
+            bits delivered with the confidence of someone who has never seriously reconsidered a thought.
+          </p>
+
+          <p class="text">
+            Yarid’s work is famously unedited, documenting every weakness in real time: the lack of
+            timing, the absence of structure, and a stunning inability to read a room—any room.
+          </p>
+
+          <p class="text">
+            In the end, George Yarid’s true achievement isn’t cultural impact or creative success—it’s
+            endurance.
+          </p>
+        </div>
       </main>
 
     </div>
   </div>
+
 </body>
 </html>
