@@ -1,9 +1,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Gorgeous George Show</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
     html, body {
@@ -11,10 +11,11 @@
       padding: 0;
       min-height: 100%;
       background: black;
+      overflow-x: hidden;
       overflow-y: auto;
     }
 
-    /* Stars background */
+    /* Full-screen stars background (fixed) */
     video.bg {
       position: fixed;
       inset: 0;
@@ -24,177 +25,210 @@
       z-index: 0;
     }
 
-    /* Dark overlay for readability */
     .overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.15);
+      background: rgba(0,0,0,0.18);
       z-index: 0;
       pointer-events: none;
     }
 
-    /* Page content (scrolls) */
+    /* Page content scrolls; background stays fixed */
     .page {
       position: relative;
       z-index: 1;
-      padding: 20px;
+      padding: 24px;
     }
 
-    /* Title */
-    .title {
-      text-align: center;
-      margin: 0 0 24px;
-
-      font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, "Times New Roman", serif;
-      color: #d4af37;
-      font-size: 100px;
-      line-height: 1.05;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-
-      animation: glowPulse 4.5s ease-in-out infinite;
-    }
-
-    @keyframes glowPulse {
-      0% {
-        text-shadow: 0 3px 8px rgba(0,0,0,0.75),
-                     0 0 10px rgba(212,175,55,0.35);
-      }
-      50% {
-        text-shadow: 0 4px 12px rgba(0,0,0,0.85),
-                     0 0 22px rgba(212,175,55,0.7),
-                     0 0 40px rgba(212,175,55,0.35);
-      }
-      100% {
-        text-shadow: 0 3px 8px rgba(0,0,0,0.75),
-                     0 0 10px rgba(212,175,55,0.35);
-      }
-    }
-
-    /* Two-column layout */
+    /* Layout: left column (logo + buttons) + right content */
     .layout {
-      display: grid;
-      grid-template-columns: 360px 1fr;
-      gap: 24px;
-      align-items: start;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
     }
 
     /* Left column */
-    .nav-wrap {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .nav-logo {
+    .sidebar {
       width: 330px;
-      max-width: 100%;
+      flex: 0 0 330px;
     }
 
-    .nav-logo img {
+    .logo {
       width: 100%;
-      height: auto;
       display: block;
+      margin: 0 0 16px 0;
+      border-radius: 12px;
+      border: 2px solid rgba(212,175,55,0.9);
+      background: rgba(0,0,0,0.55);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
     }
 
     .nav {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      width: 100%;
-      align-items: center;
+      gap: 14px;
     }
 
     .nav a {
-      width: 330px;
-      max-width: 100%;
-      padding: 18px 24px;
-
+      display: block;
       text-decoration: none;
       text-align: center;
 
-      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
-      font-size: 27px;
-      letter-spacing: 0.6px;
+      /* “Gold rectangle” but slightly translucent so gold text stays readable */
+      background: rgba(212,175,55,0.14);
+      border: 2px solid rgba(212,175,55,0.95);
+      border-radius: 10px;
+
+      padding: 18px 16px;          /* 50% bigger feel */
+      font-size: 24px;             /* 50% bigger feel */
 
       color: #d4af37;
-      border: 2px solid #d4af37;
-      background: rgba(212,175,55,0.08);
-      border-radius: 8px;
+      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
+      letter-spacing: 0.25px;
 
-      transition: background 0.25s ease,
-                  box-shadow 0.25s ease,
-                  transform 0.2s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.55);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
     .nav a:hover {
-      background: rgba(212,175,55,0.18);
-      box-shadow: 0 0 14px rgba(212,175,55,0.45);
-      transform: translateX(4px);
+      transform: translateY(-2px);
+      background: rgba(212,175,55,0.22);
+      box-shadow: 0 0 18px rgba(212,175,55,0.35), 0 16px 40px rgba(0,0,0,0.7);
     }
 
     /* Right column */
-    .side-video {
-      display: block;
+    .main {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding-top: 6px;
     }
 
-    .side-video video {
-      width: 75%;
-      display: block;
-      margin: 0 auto 16px;
+    /* Title */
+    .title {
+      margin: 0 0 18px;
+      text-align: center;
 
-      aspect-ratio: 16 / 9;
-      height: auto;
-      object-fit: cover;
-
-      border: 2px solid #d4af37;
-      border-radius: 10px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-    }
-
-    .official-text {
-      width: 75%;              /* flush with video */
-      margin: 0 auto;
-      text-align: left;
-
-      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
-      font-size: 50px;
-      line-height: 1.45;
-      letter-spacing: 0.4px;
-
+      font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, "Times New Roman", serif;
+      font-size: 100px; /* you said you like 100px */
+      line-height: 1.03;
+      font-weight: 600;
+      letter-spacing: 0.5px;
       color: #d4af37;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+
+      animation: glowPulse 4.5s ease-in-out infinite;
+      text-shadow: 0 3px 8px rgba(0,0,0,0.75);
     }
 
-    /* Mobile */
-    @media (max-width: 900px) {
-      .title { font-size: 56px; }
-      .layout { grid-template-columns: 1fr; }
-      .nav a { width: 100%; }
-      .side-video video,
-      .official-text { width: 100%; }
+    @keyframes glowPulse {
+      0% {
+        text-shadow:
+          0 3px 8px rgba(0,0,0,0.75),
+          0 0 10px rgba(212,175,55,0.35);
+      }
+      50% {
+        text-shadow:
+          0 4px 12px rgba(0,0,0,0.85),
+          0 0 22px rgba(212,175,55,0.7),
+          0 0 40px rgba(212,175,55,0.35);
+      }
+      100% {
+        text-shadow:
+          0 3px 8px rgba(0,0,0,0.75),
+          0 0 10px rgba(212,175,55,0.35);
+      }
+    }
+
+    /* Right-side content block (video + paragraph) aligned to the right */
+    .feature {
+      display: flex;
+      justify-content: flex-end; /* pushes the block to the right side */
+    }
+
+    /* This block is “the right half”, then 25% smaller (so ~75% of that) */
+    .feature-inner {
+      width: min(680px, 38vw); /* ~right-half-ish, scaled down */
+    }
+
+    .video-box {
+      border: 2px solid #d4af37; /* thin gold border */
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      background: black;
+      margin-bottom: 14px;
+    }
+
+    .video-box video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Paragraph styling + subtle spacing between paragraphs */
+    .text {
+      color: #d4af37;
+      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
+      font-size: 22px;
+      line-height: 1.45;
+      letter-spacing: 0.25px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+
+      margin: 0 0 18px; /* subtle margin between paragraphs */
+      text-align: left; /* flush left */
+    }
+
+    /* Responsive */
+    @media (max-width: 1100px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        flex: 0 0 auto;
+        max-width: 520px;
+        margin: 0 auto;
+      }
+
+      .main {
+        width: 100%;
+      }
+
+      .feature {
+        justify-content: center;
+      }
+
+      .feature-inner {
+        width: min(820px, 92vw);
+      }
+
+      .title {
+        font-size: 64px;
+      }
+
+      .nav a {
+        font-size: 22px;
+        padding: 16px 14px;
+      }
     }
   </style>
 </head>
 
 <body>
-
-  <!-- Stars -->
+  <!-- Background stars -->
   <video class="bg" autoplay muted loop playsinline>
-    <source src="stars.mp4" type="video/mp4">
+    <source src="stars.mp4" type="video/mp4" />
   </video>
   <div class="overlay"></div>
 
   <div class="page">
-    <h1 class="title">The Gorgeous George Show</h1>
-
     <div class="layout">
-      <!-- Left -->
-      <div class="nav-wrap">
-        <div class="nav-logo">
-          <img src="logo.png" alt="The Gorgeous George Show Logo">
-        </div>
+
+      <!-- LEFT: Logo + Buttons -->
+      <aside class="sidebar">
+        <img class="logo" src="logo.png" alt="The Gorgeous George Show Logo" />
 
         <nav class="nav">
           <a href="gallery.html">Photo Gallery</a>
@@ -206,21 +240,51 @@
           <a href="book.html">The Book</a>
           <a href="youtube.html">Goon YouTube Links</a>
         </nav>
-      </div>
+      </aside>
 
-      <!-- Right -->
-      <div class="side-video">
-        <video autoplay muted loop playsinline>
-          <source src="Cry%20Baby%20George.mp4" type="video/mp4">
-        </video>
+      <!-- RIGHT: Title + Feature video + Paragraphs -->
+      <main class="main">
+        <h1 class="title">The Gorgeous George Show</h1>
 
-        <p class="official-text">
-          This is the official website of The Gorgeous George Show. Any other websites pertaining to
-          The Gorgeous George Show are fake. This website is the true narrative of the Gorgeous George saga.
-        </p>
-      </div>
+        <section class="feature">
+          <div class="feature-inner">
+
+            <div class="video-box">
+              <video autoplay muted loop playsinline>
+                <source src="Cry Baby George.mp4" type="video/mp4" />
+              </video>
+            </div>
+
+            <!-- Existing paragraph + continuation, broken into clean paragraphs -->
+            <p class="text">
+              This is the official website of The Gorgeous George Show. Any other websites pertaining to The Gorgeous George Show are fake. This website is the true narrative of the Gorgeous George saga.
+            </p>
+
+            <p class="text">
+              George Yarid is a Richmond, Virginia public-access lifer whose greatest talent appears to be confusing longevity with legitimacy. Calling himself “Gorgeous George,” Yarid has spent decades performing the same trick: placing a camera in front of himself and mistaking the act of being recorded for evidence that something worth watching is happening.
+            </p>
+
+            <p class="text">
+              His long-running show functions less as entertainment and more as a public archive of unchecked ego—an endless stream of rambling monologues, recycled grievances, and half-formed bits delivered with the confidence of someone who has never seriously reconsidered a thought. What may have once been harmless DIY enthusiasm eventually calcified into a persona built on bitterness, repetition, and the unshakable belief that the audience is wrong for not applauding.
+            </p>
+
+            <p class="text">
+              Yarid’s work is famously unedited, which is unfortunate, because it documents every weakness in real time: the lack of timing, the absence of structure, and a stunning inability to read a room—any room. Admirers may frame this as “outsider art,” but critics see it for what it is: someone refusing to evolve while demanding recognition for not quitting.
+            </p>
+
+            <p class="text">
+              Across television, print, and online platforms, Yarid presents himself as a persecuted genius sabotaged by everyone around him, despite being the only constant in every failed collaboration, burned bridge, and personal collapse. His autobiography offers neither insight nor growth; instead, it reads as a bloated complaint file, cataloging decades of perceived slights with zero self-reflection.
+            </p>
+
+            <p class="text">
+              In the end, George Yarid’s true achievement isn’t cultural impact or creative success—it’s endurance. He has managed to outlast relevance, criticism, and self-awareness alike, continuing to broadcast as if persistence alone might someday transform noise into meaning.
+            </p>
+
+          </div>
+        </section>
+      </main>
+
     </div>
   </div>
-
 </body>
 </html>
