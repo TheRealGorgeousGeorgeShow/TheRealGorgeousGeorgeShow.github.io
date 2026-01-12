@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Homepage -->
+
   <url>
     <loc>https://www.gorgeousgeorgeshow.com/</loc>
     <priority>1.0</priority>
   </url>
 
-  <!-- Example Pages — Replace or Remove as Needed -->
   <url>
-    <loc>https://www.gorgeousgeorgeshow.com/about</loc>
+    <loc>https://www.gorgeousgeorgeshow.com/kevin</loc>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.gorgeousgeorgeshow.com/episodes</loc>
+    <loc>https://www.gorgeousgeorgeshow.com/glenry</loc>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.gorgeousgeorgeshow.com/contact</loc>
+    <loc>https://www.gorgeousgeorgeshow.com/other-losers</loc>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.gorgeousgeorgeshow.com/blog</loc>
+    <loc>https://www.gorgeousgeorgeshow.com/gg-content</loc>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gorgeousgeorgeshow.com/1307</loc>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.gorgeousgeorgeshow.com/goon-youtube-links</loc>
     <priority>0.7</priority>
   </url>
+
 </urlset>
