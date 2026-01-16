@@ -12,6 +12,7 @@
       min-height: 100%;
       background: black;
       overflow-y: auto;
+      overflow-x: hidden;
     }
 
     /* Stars background */
@@ -43,7 +44,7 @@
       display: inline-block;
       margin-bottom: 18px;
 
-      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
+      font-family: "Galliard BT", "Garamond", serif;
       font-size: 22px;
       color: #d4af37;
       text-decoration: none;
@@ -67,9 +68,9 @@
       text-align: center;
       margin: 0 0 10px;
 
-      font-family: "Century Old Style", "Old Century", "Century Schoolbook", Georgia, "Times New Roman", serif;
+      font-family: "Century Old Style", "Old Century", Georgia, serif;
       color: #d4af37;
-      font-size: 66px;
+      font-size: 58px;
       line-height: 1.05;
       font-weight: 600;
       letter-spacing: 0.5px;
@@ -98,12 +99,12 @@
 
     .subtitle {
       max-width: 1100px;
-      margin: 0 auto 22px;
+      margin: 0 auto 18px;
       text-align: center;
 
       color: #d4af37;
       font-family: "Galliard BT", "Garamond", serif;
-      font-size: 22px;
+      font-size: 20px;
       line-height: 1.4;
       letter-spacing: 0.25px;
 
@@ -112,7 +113,7 @@
 
     /* Layout */
     .wrap {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 360px 1fr;
@@ -122,114 +123,108 @@
 
     .card {
       border: 2px solid rgba(212,175,55,0.9);
-      border-radius: 12px;
+      border-radius: 14px;
       background: rgba(0,0,0,0.55);
       box-shadow: 0 10px 25px rgba(0,0,0,0.6);
       overflow: hidden;
     }
 
-    /* Cover area */
-    .cover {
-      padding: 16px;
-      text-align: center;
+    /* Chapter list */
+    .chapters {
+      padding: 14px;
+      max-height: 70vh;
+      overflow-y: auto;
     }
 
-    .cover img {
-      width: 100%;
-      height: auto;
-      display: block;
-
-      border: 2px solid #d4af37;
-      border-radius: 10px;
-      background: black;
-    }
-
-    .cover .hint {
-      margin-top: 12px;
-      color: rgba(212,175,55,0.95);
-      font-family: "Galliard BT", "Garamond", serif;
-      font-size: 18px;
-      letter-spacing: 0.3px;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
-    }
-
-    /* Text content */
-    .content {
-      padding: 18px 20px 22px;
-    }
-
-    .section-title {
-      margin: 0 0 10px;
+    .chapters h2 {
+      margin: 6px 6px 10px;
       color: #d4af37;
       font-family: "Galliard BT", "Garamond", serif;
-      font-size: 28px;
-      letter-spacing: 0.4px;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
-    }
-
-    .text {
-      margin: 0 0 14px;
-      color: #d4af37;
-      font-family: "Galliard BT", "Adobe Garamond Pro", "Garamond", "Baskerville", "Times New Roman", serif;
       font-size: 22px;
-      line-height: 1.45;
-      letter-spacing: 0.25px;
+      letter-spacing: 0.35px;
       text-shadow: 0 2px 6px rgba(0,0,0,0.75);
     }
 
-    .bullets {
-      margin: 0 0 16px 22px;
-      color: #d4af37;
-      font-family: "Galliard BT", "Garamond", serif;
-      font-size: 20px;
-      line-height: 1.35;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
-    }
+    .chapter-btn {
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
 
-    /* Buttons */
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 10px;
-    }
-
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-
-      border: 2px solid #d4af37;
+      border: 2px solid rgba(212,175,55,0.85);
       border-radius: 10px;
-      padding: 12px 16px;
+      background: rgba(212,175,55,0.10);
+
+      padding: 12px 12px;
+      margin: 10px 0;
 
       color: #d4af37;
       font-family: "Galliard BT", "Garamond", serif;
       font-size: 18px;
-      letter-spacing: 0.35px;
+      letter-spacing: 0.25px;
 
-      background: rgba(212,175,55,0.08);
-      transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+      transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
     }
 
-    .btn:hover {
+    .chapter-btn:hover {
       background: rgba(212,175,55,0.18);
-      box-shadow: 0 0 14px rgba(212,175,55,0.45);
-      transform: translateY(-2px);
+      box-shadow: 0 0 14px rgba(212,175,55,0.35);
+      transform: translateY(-1px);
+    }
+
+    .chapter-btn.active {
+      background: rgba(212,175,55,0.22);
+      box-shadow: 0 0 18px rgba(212,175,55,0.45);
+    }
+
+    /* Player */
+    .player {
+      padding: 14px;
+    }
+
+    .now-playing {
+      margin: 6px 6px 12px;
+      color: #d4af37;
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 22px;
+      letter-spacing: 0.35px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+    }
+
+    .video-box {
+      border: 2px solid #d4af37;
+      border-radius: 14px;
+      overflow: hidden;
+      background: black;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+    }
+
+    /* Responsive iframe video */
+    .video-embed {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      border: 0;
+    }
+
+    .hint {
+      margin: 12px 6px 0;
+      color: rgba(212,175,55,0.9);
+      font-family: "Galliard BT", "Garamond", serif;
+      font-size: 16px;
+      letter-spacing: 0.2px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.75);
+      line-height: 1.35;
     }
 
     /* Mobile */
-    @media (max-width: 900px) {
+    @media (max-width: 980px) {
       .wrap { grid-template-columns: 1fr; }
-      .title { font-size: 52px; }
-    }
-    @media (max-width: 600px) {
-      .title { font-size: 44px; }
+      .chapters { max-height: none; }
     }
   </style>
 </head>
 
 <body>
-
   <video class="bg" autoplay muted loop playsinline>
     <source src="stars.mp4" type="video/mp4">
   </video>
@@ -240,49 +235,105 @@
 
     <h1 class="title">What’s Causing All of This</h1>
     <div class="subtitle">
-      The official book page for the Gorgeous George saga.
+      Watch the book one chapter at a time. Start with the Preface, then continue through Chapters 1–32.
     </div>
 
     <div class="wrap">
-      <!-- Left: cover -->
-      <div class="card cover">
-        <!-- Upload your cover image and name it book-cover.jpg OR change the src below -->
-        <img src="book-cover.jpg" alt="What’s Causing All of This - cover">
-        <div class="hint">Upload a cover image named <strong>book-cover.jpg</strong> (or change the filename here).</div>
+      <!-- Left: chapter list -->
+      <div class="card chapters">
+        <h2>Chapters</h2>
+
+        <button class="chapter-btn active"
+                data-title="Preface"
+                data-src="https://www.youtube.com/embed/6nrv75j4SHo">
+          Preface
+        </button>
+
+        <button class="chapter-btn" data-title="Chapter 1" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 1</button>
+        <button class="chapter-btn" data-title="Chapter 2" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 2</button>
+        <button class="chapter-btn" data-title="Chapter 3" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 3</button>
+        <button class="chapter-btn" data-title="Chapter 4" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 4</button>
+        <button class="chapter-btn" data-title="Chapter 5" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 5</button>
+        <button class="chapter-btn" data-title="Chapter 6" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 6</button>
+        <button class="chapter-btn" data-title="Chapter 7" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 7</button>
+        <button class="chapter-btn" data-title="Chapter 8" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 8</button>
+        <button class="chapter-btn" data-title="Chapter 9" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 9</button>
+        <button class="chapter-btn" data-title="Chapter 10" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 10</button>
+
+        <button class="chapter-btn" data-title="Chapter 11" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 11</button>
+        <button class="chapter-btn" data-title="Chapter 12" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 12</button>
+        <button class="chapter-btn" data-title="Chapter 13" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 13</button>
+        <button class="chapter-btn" data-title="Chapter 14" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 14</button>
+        <button class="chapter-btn" data-title="Chapter 15" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 15</button>
+        <button class="chapter-btn" data-title="Chapter 16" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 16</button>
+        <button class="chapter-btn" data-title="Chapter 17" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 17</button>
+        <button class="chapter-btn" data-title="Chapter 18" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 18</button>
+        <button class="chapter-btn" data-title="Chapter 19" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 19</button>
+        <button class="chapter-btn" data-title="Chapter 20" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 20</button>
+
+        <button class="chapter-btn" data-title="Chapter 21" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 21</button>
+        <button class="chapter-btn" data-title="Chapter 22" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 22</button>
+        <button class="chapter-btn" data-title="Chapter 23" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 23</button>
+        <button class="chapter-btn" data-title="Chapter 24" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 24</button>
+        <button class="chapter-btn" data-title="Chapter 25" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 25</button>
+        <button class="chapter-btn" data-title="Chapter 26" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 26</button>
+        <button class="chapter-btn" data-title="Chapter 27" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 27</button>
+        <button class="chapter-btn" data-title="Chapter 28" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 28</button>
+        <button class="chapter-btn" data-title="Chapter 29" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 29</button>
+        <button class="chapter-btn" data-title="Chapter 30" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 30</button>
+
+        <button class="chapter-btn" data-title="Chapter 31" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 31</button>
+        <button class="chapter-btn" data-title="Chapter 32" data-src="https://www.youtube.com/embed/REPLACE_ME">Chapter 32</button>
       </div>
 
-      <!-- Right: details -->
-      <div class="card content">
-        <h2 class="section-title">About the Book</h2>
-        <p class="text">
-          <em>What’s Causing All of This</em> is a semi-autobiographical, satirical memoir told in a
-          stream-of-consciousness style — documenting the Gorgeous George universe through personal anecdotes,
-          exaggerated storytelling, and questionable decisions.
-        </p>
+      <!-- Right: player -->
+      <div class="card player">
+        <div class="now-playing" id="nowPlaying">Now Playing: Preface</div>
 
-        <h2 class="section-title">What You’ll Find Inside</h2>
-        <ul class="bullets">
-          <li>Stories, rants, and “explanations” from the GG timeline</li>
-          <li>Recurring characters and sagas</li>
-          <li>Comedy, chaos, and alleged events</li>
-          <li>Unreliable narration (by design)</li>
-        </ul>
+        <div class="video-box">
+          <iframe
+            id="bookPlayer"
+            class="video-embed"
+            src="https://www.youtube.com/embed/6nrv75j4SHo"
+            title="Book Chapter Player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
 
-        <h2 class="section-title">Links</h2>
-        <p class="text">
-          Add your links below. These can point to a PDF, a store page, a timeline version, or anything else.
-        </p>
-
-        <div class="actions">
-          <!-- Replace # with real destinations when ready -->
-          <a class="btn" href="#" target="_blank" rel="noopener">Read / Download</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">Buy the Book</a>
-          <a class="btn" href="#" target="_blank" rel="noopener">Timeline Version</a>
-          <a class="btn" href="content.html">Related GG Content</a>
+        <div class="hint">
+          Tip: Upload each chapter to YouTube as <strong>Unlisted</strong>, then copy its
+          <strong>embed</strong> link (starts with <strong>https://www.youtube.com/embed/</strong>)
+          and replace each <strong>REPLACE_ME</strong>.
         </div>
       </div>
     </div>
   </div>
 
+  <script>
+    const player = document.getElementById("bookPlayer");
+    const nowPlaying = document.getElementById("nowPlaying");
+    const buttons = document.querySelectorAll(".chapter-btn");
+
+    function setActive(btn) {
+      buttons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const title = btn.getAttribute("data-title");
+        const src = btn.getAttribute("data-src");
+
+        setActive(btn);
+        nowPlaying.textContent = "Now Playing: " + title;
+
+        player.src = src;
+
+        player.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    });
+  </script>
 </body>
 </html>
